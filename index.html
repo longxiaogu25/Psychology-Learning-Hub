@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychology Learning Hub - Your Gateway to Scientific Psychology</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #1a202c;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: white;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .my-records-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .my-records-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .brain-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+        }
+
+        .nav-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Home Page Styles */
+        .home-page {
+            display: block;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+            perspective: 1000px;
+        }
+
+        .category-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            height: 420px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .category-1 { --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .category-2 { --gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .category-3 { --gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+
+        .category-header {
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .category-icon {
+            font-size: 3.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1.2rem;
+        }
+
+        .category-description {
+            font-size: 1rem;
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .category-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.8rem 1rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: auto;
+            gap: 0.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stat-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #718096;
+            font-weight: 500;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        /* Detail Page Styles */
+        .detail-page {
+            display: none;
+        }
+
+        .detail-header {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+        }
+
+        .detail-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .detail-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            padding: 1rem 0;
+        }
+
+        .resource-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .resource-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .resource-provider {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: #764ba2;
+            transform: translateX(4px);
+        }
+
+        .resource-link i {
+            margin-left: 0.5rem;
+        }
+
+        /* My Records Page */
+        .records-page {
+            display: none;
+        }
+
+        .records-list {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+
+        .record-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .record-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .record-time {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .record-category {
+            font-size: 0.9rem;
+            color: #a0aec0;
+        }
+
+        .empty-records {
+            text-align: center;
+            padding: 3rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .empty-records i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: white;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 2.5rem; }
+            .brain-icon { font-size: 3rem; }
+            .categories-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .category-card { padding: 2rem; height: auto; }
+            .category-title { font-size: 1.5rem; }
+            .resources-grid { grid-template-columns: 1fr; }
+            .nav-header { flex-direction: column; gap: 1rem; }
+            .my-records-btn { position: static; margin-bottom: 1rem; }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-card {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .category-card:nth-child(1) { animation-delay: 0.1s; }
+        .category-card:nth-child(2) { animation-delay: 0.2s; }
+        .category-card:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Home Page -->
+        <div id="homePage" class="home-page">
+            <header>
+                <button class="my-records-btn" onclick="showMyRecords()">
+                    <i class="fas fa-user"></i> My Records
+                </button>
+                <div class="header-content">
+                    <i class="fas fa-brain brain-icon"></i>
+                    <h1>Psychology Learning Hub</h1>
+                    <p class="subtitle">Master Scientific Psychology like Top University Students. Your comprehensive guide to psychology education from world-class institutions.</p>
+                </div>
+            </header>
+
+            <div class="categories-grid">
+                <!-- Category 1: What is Psychology -->
+                <div class="category-card category-1" onclick="showDetail('psychology-intro')">
+                    <div class="category-header">
+                        <i class="fas fa-lightbulb category-icon"></i>
+                        <h2 class="category-title">What is Psychology?</h2>
+                        <p class="category-description">Explore the fundamentals of psychology through courses from top universities like Tsinghua, Yale, and Beijing Normal University.</p>
+                    </div>
+                    <div class="category-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">19</div>
+                            <div class="stat-label">Courses</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Universities</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">All Levels</div>
+                            <div class="stat-label">Difficulty</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Research Tools -->
+                <div class="category-card category-2" onclick="showDetail('research-tools')">
+                    <div class="category-header">
+                        <i class="fas fa-tools category-icon"></i>
+                        <h2 class="category-title">Research Tools</h2>
+                        <p class="category-description">Master essential tools for psychology research including Python, R, EEG, fMRI, and cutting-edge AI technologies.</p>
+                    </div>
+                    <div class="category-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">16</div>
+                            <div class="stat-label">Tools</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">Tech</div>
+                            <div class="stat-label">Focus</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">Practical</div>
+                            <div class="stat-label">Learning</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Research Databases -->
+                <div class="category-card category-3" onclick="showDetail('databases')">
+                    <div class="category-header">
+                        <i class="fas fa-database category-icon"></i>
+                        <h2 class="category-title">Research Databases</h2>
+                        <p class="category-description">Access comprehensive academic databases for psychology research, from global platforms to specialized psychology resources.</p>
+                    </div>
+                    <div class="category-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">Databases</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">Global</div>
+                            <div class="stat-label">Coverage</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">Research</div>
+                            <div class="stat-label">Focus</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Records Page -->
+        <div id="myRecordsPage" class="records-page">
+            <div class="nav-header">
+                <div class="nav-title">My Learning Records</div>
+                <button class="back-btn" onclick="showHome()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+            
+            <div class="detail-header">
+                <h2 class="detail-title">Your Learning Journey</h2>
+                <p class="detail-subtitle">Track your progress and revisit your learning path</p>
+            </div>
+
+            <div class="records-list" id="recordsList">
+                <div class="empty-records">
+                    <i class="fas fa-book-open"></i>
+                    <h3>No records yet</h3>
+                    <p>Start exploring categories to track your learning journey!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Pages -->
+        <div id="psychologyIntroPage" class="detail-page">
+            <div class="nav-header">
+                <div class="nav-title">What is Psychology?</div>
+                <button class="back-btn" onclick="showHome()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+            
+            <div class="detail-header">
+                <h2 class="detail-title">Foundations of Psychology</h2>
+                <p class="detail-subtitle">Comprehensive courses from world's leading universities</p>
+            </div>
+
+            <div class="resources-grid">
+                <!-- Advanced Courses -->
+                <div class="resource-card">
+                    <h3 class="resource-title">Advanced Cognitive Psychology</h3>
+                    <div class="resource-provider">Tsinghua University - Prof. Yan Chaogang</div>
+                    <a href="http://edu.deepbrain.com/AdvCogPsy" class="resource-link" target="_blank">
+                        Advanced Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Basic Courses -->
+                <div class="resource-card">
+                    <h3 class="resource-title">Introduction to Psychology</h3>
+                    <div class="resource-provider">Tsinghua University</div>
+                    <a href="https://www.xuetangx.com/course/THU07111000416/23907918" class="resource-link" target="_blank">
+                        Visit Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Exploring Psychology</h3>
+                    <div class="resource-provider">Tsinghua University</div>
+                    <a href="https://www.xuetangx.com/course/THU07111000658/23895860" class="resource-link" target="_blank">
+                        Visit Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Introduction to Psychology</h3>
+                    <div class="resource-provider">Yale University</div>
+                    <a href="https://www.bilibili.com/video/av86546090/" class="resource-link" target="_blank">
+                        Watch Lectures <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">General Psychology</h3>
+                    <div class="resource-provider">Beijing Normal University - Prof. Chen Baoguo</div>
+                    <a href="https://www.bilibili.com/video/BV1jV4y1U7NZ/" class="resource-link" target="_blank">
+                        Watch Lectures <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Specialized Branches -->
+                <div class="resource-card">
+                    <h3 class="resource-title">Social Psychology</h3>
+                    <div class="resource-provider">Wesleyan University (Free)</div>
+                    <a href="https://www.coursera.org/learn/social-psychology" class="resource-link" target="_blank">
+                        Enroll Now <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Positive Psychology</h3>
+                    <div class="resource-provider">Tsinghua University - Prof. Peng Kaiping</div>
+                    <a href="https://www.xuetangx.com/course/THU07111001088/23896261" class="resource-link" target="_blank">
+                        Visit Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Psychological Statistics</h3>
+                    <div class="resource-provider">American Psychological Association Certified</div>
+                    <a href="https://www.coursera.org/learn/statistics-in-psychological-research" class="resource-link" target="_blank">
+                        Learn Statistics <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Psychological Statistics</h3>
+                    <div class="resource-provider">University of North Dakota</div>
+                    <a href="https://und.edu/academics/online/enroll-anytime/psyc241.html" class="resource-link" target="_blank">
+                        Enroll Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Psychometrics</h3>
+                    <div class="resource-provider">Stats Camp Foundation</div>
+                    <a href="https://www.statscamp.org/courses/psychometrics/" class="resource-link" target="_blank">
+                        Learn Psychometrics <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Measurement & Psychometrics Certificate</h3>
+                    <div class="resource-provider">University of Alabama</div>
+                    <a href="https://catalog.ua.edu/graduate/education/educational-studies-psychology-research-methodology-counseling/measurement-and-psychometrics-certificate/" class="resource-link" target="_blank">
+                        Certificate Program <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Developmental Psychology</h3>
+                    <div class="resource-provider">Liaoning Normal University</div>
+                    <a href="https://www.bilibili.com/video/av59302593/" class="resource-link" target="_blank">
+                        Watch Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Cognitive Psychology & Neuropsychology</h3>
+                    <div class="resource-provider">University of Cambridge (edX Free)</div>
+                    <a href="https://www.edx.org/learn/cognitive-science/university-of-cambridge-introduction-to-cognitive-psychology-and-neuropsychology" class="resource-link" target="_blank">
+                        Free Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Cognitive Psychology</h3>
+                    <div class="resource-provider">University of York (Free)</div>
+                    <a href="https://www.york.ac.uk/study/moocs/cognitive-psychology-experimental-science/" class="resource-link" target="_blank">
+                        Free MOOC <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Introduction to Cognitive Psychology</h3>
+                    <div class="resource-provider">FutureLearn Platform</div>
+                    <a href="https://www.futurelearn.com/courses/an-introduction-to-cognitive-psychology-as-an-experimental-science" class="resource-link" target="_blank">
+                        Join Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Abnormal Psychology</h3>
+                    <div class="resource-provider">Educational Platform</div>
+                    <a href="https://www.bilibili.com/video/BV1ut411n7Bd/" class="resource-link" target="_blank">
+                        Access Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Research Methods in Psychology</h3>
+                    <div class="resource-provider">Coursera</div>
+                    <a href="https://www.coursera.org/courses?query=research+methods+in+psychology" class="resource-link" target="_blank">
+                        Browse Courses <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Experimental Psychology</h3>
+                    <div class="resource-provider">Tufts University</div>
+                    <a href="https://enroll.tufts.edu/search/publicCourseSearchDetails.do?method=load&courseId=24414" class="resource-link" target="_blank">
+                        Course Details <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="researchToolsPage" class="detail-page">
+            <div class="nav-header">
+                <div class="nav-title">Psychology Research Tools</div>
+                <button class="back-btn" onclick="showHome()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+            
+            <div class="detail-header">
+                <h2 class="detail-title">Essential Research Tools</h2>
+                <p class="detail-subtitle">Master the technical skills for modern psychology research</p>
+            </div>
+
+            <div class="resources-grid">
+                <!-- fMRI Technology -->
+                <div class="resource-card">
+                    <h3 class="resource-title">Magnetic Resonance Imaging Technology</h3>
+                    <div class="resource-provider">Tsinghua University - Prof. Yan Chaogang</div>
+                    <a href="http://edu.deepbrain.com/MRICourse" class="resource-link" target="_blank">
+                        Access Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Python Learning -->
+                <div class="resource-card">
+                    <h3 class="resource-title">Psychology Programming</h3>
+                    <div class="resource-provider">Designed for Psychology Students</div>
+                    <a href="https://www.djmannion.net/psych_programming/" class="resource-link" target="_blank">
+                        Start Learning <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Python for Everybody</h3>
+                    <div class="resource-provider">University of Michigan (Coursera Free)</div>
+                    <a href="https://www.coursera.org/learn/python" class="resource-link" target="_blank">
+                        Free Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Google's Python Class</h3>
+                    <div class="resource-provider">Google Official Free Course</div>
+                    <a href="https://developers.google.com/edu/python" class="resource-link" target="_blank">
+                        Learn Python <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">CS50's Introduction to Programming with Python</h3>
+                    <div class="resource-provider">Harvard University</div>
+                    <a href="https://pll.harvard.edu/course/cs50s-introduction-programming-python" class="resource-link" target="_blank">
+                        Harvard Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Python Interactive Course</h3>
+                    <div class="resource-provider">Codecademy</div>
+                    <a href="https://www.codecademy.com/catalog/language/python" class="resource-link" target="_blank">
+                        Interactive Learning <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- R Language -->
+                <div class="resource-card">
+                    <h3 class="resource-title">Learning Statistics with R</h3>
+                    <div class="resource-provider">Free Textbook for Psychology Students</div>
+                    <a href="https://learningstatisticswithr.com/" class="resource-link" target="_blank">
+                        Free Textbook <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">R for Psychology</h3>
+                    <div class="resource-provider">Psychology-focused R Tutorial</div>
+                    <a href="https://glennwilliams.me/r4psych/" class="resource-link" target="_blank">
+                        R Tutorial <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Statistics and R</h3>
+                    <div class="resource-provider">Harvard University</div>
+                    <a href="https://pll.harvard.edu/course/statistics-and-r" class="resource-link" target="_blank">
+                        Harvard Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Statistics with R Specialization</h3>
+                    <div class="resource-provider">Duke University</div>
+                    <a href="https://www.coursera.org/specializations/statistics" class="resource-link" target="_blank">
+                        Data Analysis <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- English Learning -->
+                <div class="resource-card">
+                    <h3 class="resource-title">Academic English Composition</h3>
+                    <div class="resource-provider">Duke University</div>
+                    <a href="https://www.coursera.org/learn/duke-english-composition" class="resource-link" target="_blank">
+                        Academic English <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Academic Writing Course</h3>
+                    <div class="resource-provider">edX Platform</div>
+                    <a href="https://www.edx.org/learn/writing" class="resource-link" target="_blank">
+                        Writing Skills <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- EEG -->
+                <div class="resource-card">
+                    <h3 class="resource-title">Comprehensive EEG Course</h3>
+                    <div class="resource-provider">Study EEG Online (Free)</div>
+                    <a href="https://studyeegonline.com/" class="resource-link" target="_blank">
+                        Learn EEG <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">EEG in Psychology</h3>
+                    <div class="resource-provider">Udemy</div>
+                    <a href="https://www.udemy.com/course/electroencephalography/" class="resource-link" target="_blank">
+                        EEG Applications <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- fMRI -->
+                <div class="resource-card">
+                    <h3 class="resource-title">Computational Neuroscience</h3>
+                    <div class="resource-provider">Coursera</div>
+                    <a href="https://www.coursera.org/learn/computational-neuroscience" class="resource-link" target="_blank">
+                        Neuroscience Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">The Human Brain</h3>
+                    <div class="resource-provider">Johns Hopkins University</div>
+                    <a href="https://www.coursera.org/learn/human-brain" class="resource-link" target="_blank">
+                        Brain Studies <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Machine Learning -->
+                <div class="resource-card">
+                    <h3 class="resource-title">Machine Learning</h3>
+                    <div class="resource-provider">Stanford University</div>
+                    <a href="https://www.coursera.org/learn/machine-learning" class="resource-link" target="_blank">
+                        Start Course <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="databasesPage" class="detail-page">
+            <div class="nav-header">
+                <div class="nav-title">Research Databases</div>
+                <button class="back-btn" onclick="showHome()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+            
+            <div class="detail-header">
+                <h2 class="detail-title">Academic Research Databases</h2>
+                <p class="detail-subtitle">Access millions of psychology research papers and studies</p>
+            </div>
+
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3 class="resource-title">CNKI (China National Knowledge Infrastructure)</h3>
+                    <div class="resource-provider">Chinese Academic Database</div>
+                    <a href="https://www.cnki.net/" class="resource-link" target="_blank">
+                        Access Database <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Wanfang Database</h3>
+                    <div class="resource-provider">Chinese Academic Resources</div>
+                    <a href="https://www.wanfangdata.com.cn/" class="resource-link" target="_blank">
+                        Browse Papers <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Web of Science</h3>
+                    <div class="resource-provider">Clarivate Analytics</div>
+                    <a href="https://www.webofscience.com/" class="resource-link" target="_blank">
+                        Search Literature <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">PsycINFO Database</h3>
+                    <div class="resource-provider">American Psychological Association</div>
+                    <a href="https://www.apa.org/pubs/databases/psycinfo" class="resource-link" target="_blank">
+                        Explore PsycINFO <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">PubMed</h3>
+                    <div class="resource-provider">National Library of Medicine (Free)</div>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/" class="resource-link" target="_blank">
+                        Search PubMed <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Google Scholar</h3>
+                    <div class="resource-provider">Google (Free)</div>
+                    <a href="https://scholar.google.com/" class="resource-link" target="_blank">
+                        Search Freely <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">Frontiers in Psychology</h3>
+                    <div class="resource-provider">Open Access Journal</div>
+                    <a href="https://www.frontiersin.org/journals/psychology" class="resource-link" target="_blank">
+                        Open Access <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h3 class="resource-title">PLOS ONE</h3>
+                    <div class="resource-provider">Open Access Platform</div>
+                    <a href="https://journals.plos.org/plosone/" class="resource-link" target="_blank">
+                        Browse Articles <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Psychology Learning Hub. Empowering minds through scientific psychology education.</p>
+            <p><i class="fas fa-heart"></i> Built with passion for psychology education</p>
+        </footer>
+    </div>
+
+    <script>
+        // Learning records management
+        let learningRecords = JSON.parse(localStorage.getItem('learningRecords')) || [];
+
+        function addRecord(category, categoryTitle) {
+            const record = {
+                id: Date.now(),
+                category: category,
+                title: categoryTitle,
+                timestamp: new Date().toLocaleString(),
+                date: new Date()
+            };
+            
+            // Avoid duplicates within the same day
+            const today = new Date().toDateString();
+            const existingToday = learningRecords.find(r => 
+                r.category === category && new Date(r.date).toDateString() === today
+            );
+            
+            if (!existingToday) {
+                learningRecords.unshift(record);
+                // Keep only last 20 records
+                if (learningRecords.length > 20) {
+                    learningRecords = learningRecords.slice(0, 20);
+                }
+                localStorage.setItem('learningRecords', JSON.stringify(learningRecords));
+            }
+        }
+
+        function displayRecords() {
+            const recordsList = document.getElementById('recordsList');
+            
+            if (learningRecords.length === 0) {
+                recordsList.innerHTML = `
+                    <div class="empty-records">
+                        <i class="fas fa-book-open"></i>
+                        <h3>No records yet</h3>
+                        <p>Start exploring categories to track your learning journey!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            recordsList.innerHTML = learningRecords.map(record => `
+                <div class="record-item">
+                    <div class="record-title">${record.title}</div>
+                    <div class="record-time">Visited: ${record.timestamp}</div>
+                    <div class="record-category">Category: ${record.category}</div>
+                </div>
+            `).join('');
+        }
+
+        function showDetail(category) {
+            // Add to learning records
+            const categoryTitles = {
+                'psychology-intro': 'What is Psychology?',
+                'research-tools': 'Research Tools',
+                'databases': 'Research Databases'
+            };
+            
+            addRecord(category, categoryTitles[category]);
+            
+            // Hide home page
+            document.getElementById('homePage').style.display = 'none';
+            
+            // Hide all detail pages
+            const detailPages = document.querySelectorAll('.detail-page');
+            detailPages.forEach(page => page.style.display = 'none');
+            
+            // Hide records page
+            document.getElementById('myRecordsPage').style.display = 'none';
+            
+            // Show selected detail page
+            const pageMap = {
+                'psychology-intro': 'psychologyIntroPage',
+                'research-tools': 'researchToolsPage',
+                'databases': 'databasesPage'
+            };
+            
+            document.getElementById(pageMap[category]).style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showMyRecords() {
+            // Hide home page
+            document.getElementById('homePage').style.display = 'none';
+            
+            // Hide all detail pages
+            const detailPages = document.querySelectorAll('.detail-page');
+            detailPages.forEach(page => page.style.display = 'none');
+            
+            // Show records page
+            document.getElementById('myRecordsPage').style.display = 'block';
+            
+            // Display records
+            displayRecords();
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showHome() {
+            // Hide all detail pages
+            const detailPages = document.querySelectorAll('.detail-page');
+            detailPages.forEach(page => page.style.display = 'none');
+            
+            // Hide records page
+            document.getElementById('myRecordsPage').style.display = 'none';
+            
+            // Show home page
+            document.getElementById('homePage').style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html> 
